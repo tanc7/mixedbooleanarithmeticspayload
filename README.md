@@ -20,3 +20,11 @@ https://www.virustotal.com/gui/file/ec9506794c9b622afdcc74e2c70b49020c0b2cebb481
 
 I don't want it flagged as malware on Github. Use this as a learning tool.
 
+# Notes
+
+This is not real "mixed boolean arithmetics". It's just arithmetics actually.
+
+1. I did not use bitwise operators to further obfuscate my ordinals
+2. I did not use more convoluted tricks like shifting the bits or rotating them
+3. I kept it simple to demonstrate how to easily bypass antivirus
+
