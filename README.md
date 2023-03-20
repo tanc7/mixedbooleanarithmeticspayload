@@ -1,5 +1,6 @@
 # Proof of concept reverse shell with mixed boolean arithmetics
-[](https://github.com/tanc7/mixedbooleanarithmeticspayload/raw/main/Screenshot%20from%202023-03-19%2018-55-09.png)
+![](https://github.com/tanc7/mixedbooleanarithmeticspayload/raw/main/Screenshot%20from%202023-03-19%2018-55-09.png)
+
 All I did was execute ordinal-loading using the MAKEINTRESOURCE macro. I took the ordinal, and added 4096 1's to it, and then subtracted 4096 1's to deobfuscate it.
 
 5/69 detections Sun Mar 19 07:03:18 PM PDT 2023
