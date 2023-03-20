@@ -1,0 +1,22 @@
+# Proof of concept reverse shell with mixed boolean arithmetics
+
+All I did was execute ordinal-loading using the MAKEINTRESOURCE macro. I took the ordinal, and added 4096 1's to it, and then subtracted 4096 1's to deobfuscate it.
+
+5/69 detections Sun Mar 19 07:03:18 PM PDT 2023
+
+https://www.virustotal.com/gui/file/ec9506794c9b622afdcc74e2c70b49020c0b2cebb4819d08d0ec6ceb5573339e/behavior
+
+# Resources used
+
+1. PE-Bear
+2. Any IDE is fine
+3. learn.microsoft.com
+
+# Compile
+
+`x86_64-w64-mingw32-g++ -lwsock32 -lws2_32 revshell.cpp`
+
+# Why cant you compile it?
+
+I don't want it flagged as malware on Github. Use this as a learning tool.
+
