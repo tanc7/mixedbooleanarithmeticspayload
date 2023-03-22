@@ -59,7 +59,7 @@ Use multiples of 0x1000 to ordinal load these and XOR it back
 #define XORKEY 99
 
 int deobfuscate(int x) {
-    x ^= 99;
+    x ^= XORKEY;
     for (int i = 0; i < 0x2000; i++) {
         x -= 0x1;
     }
