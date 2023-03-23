@@ -6,7 +6,8 @@ All I did was execute ordinal-loading using the MAKEINTRESOURCE macro. I took th
 5/69 detections Sun Mar 19 07:03:18 PM PDT 2023
 
 https://www.virustotal.com/gui/file/ec9506794c9b622afdcc74e2c70b49020c0b2cebb4819d08d0ec6ceb5573339e/behavior
-
+**New Payload**
+https://www.virustotal.com/gui/file/e37a602ba7320e5b62ae97db75285eef4fb51dbff7dfa4a863718a1c163a449d?nocache=1
 # Resources used
 
 1. PE-Bear
@@ -25,7 +26,7 @@ I don't want it flagged as malware on Github. Use this as a learning tool.
 
 This is not real "mixed boolean arithmetics". It's just arithmetics actually. (Fixed with newest update, very simple XOR + Arithmetics)
 
-1. I did not use bitwise operators to further obfuscate my ordinals
+1. I did not use bitwise operators to further obfuscate my ordinals (I just did, check new VirusTotal link)
 2. I did not use more convoluted tricks like shifting the bits or rotating them
 3. I kept it simple to demonstrate how to easily bypass antivirus
 4. Part of the reason why it can evade AV despite it's malicious behavior is, outside of hiding the IAT Table and using Ordinal Loading via Mixed Boolean Arithmetics, is it's LOW ENTROPY (0.3x average). Factors like encryption (for sRDI or shellcode reflective DLL injection), obfuscation, can add to entropy, which must be "flattened" by appending useless Windows DLLs with the `type` command to flatten the entropy score. The metric is vague, but... anything over 0.7 of entropy is considered suspicious and may require a closer look by AV/EDR/XDR Solutions.
