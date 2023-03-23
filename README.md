@@ -23,11 +23,14 @@ I don't want it flagged as malware on Github. Use this as a learning tool.
 
 # Notes
 
-This is not real "mixed boolean arithmetics". It's just arithmetics actually.
+This is not real "mixed boolean arithmetics". It's just arithmetics actually. (Fixed with newest update, very simple XOR + Arithmetics)
 
 1. I did not use bitwise operators to further obfuscate my ordinals
 2. I did not use more convoluted tricks like shifting the bits or rotating them
 3. I kept it simple to demonstrate how to easily bypass antivirus
+4. Part of the reason why it can evade AV despite it's malicious behavior is, outside of hiding the IAT Table and using Ordinal Loading via Mixed Boolean Arithmetics, is it's LOW ENTROPY (0.3x average). Factors like encryption (for sRDI or shellcode reflective DLL injection), obfuscation, can add to entropy, which must be "flattened" by appending useless Windows DLLs with the `type` command to flatten the entropy score. The metric is vague, but... anything over 0.7 of entropy is considered suspicious and may require a closer look by AV/EDR/XDR Solutions.
+5. In other words, a considerable greater effort must be invested in full blown implants in obfuscating them. Either by appending useless binaries, or by creating unreachable code sections like control-flow flattened loops that can never be reached due to a opaque predicate.
+6. HeavensGate + HellsGate/HalosGate was not used. 
 
 # Applying simple mixed boolean arithmetics to a example implant (ThreadContext Injection)
 
