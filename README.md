@@ -71,3 +71,20 @@ int deobfuscate(int x) {
 }
 
 ```
+
+
+# Added my IS330 Class Papers as PDF files
+
+So this was my IS330 project, which the instructor never asked me to create a producible application (or malware), but I did do it anyways. The whole point of the class was about "innovation", which is a word that I dislike, but I had to "run with it" to get a passing grade.
+
+Anyways, I am working on integrating the following capabilities into my payload (I have already moved on from simple reverse shells to modular shellcode runners with PPID-Spoofing, EDR/XDR Unhooks, Module-Stomps, Virtual-Machine Obfuscation, Global-Hooks, Automated Rootkit Drops, Analyst Punishing Techniques, Self-Instrumentation of payloads to evade analysis, etc.)
+
+If you saw my YouTube Channel (the links are in the bottom of my paper), you know that I am actively working on integrating all of these. I currently have a 32-bit Stack Machine working on *nix operating systems, and will be making adaptions to ensure that it can reliably run on Windows operating systems as a 64-bit process (which requires adaptions to the amd64 calling conventions)
+
+Please refer to pages 12 to 14, as that was where I actually put in effort in implementation. Currently working on...
+
+1. Self-Instrumenting Stack Machine Obfuscation
+2. Analyst-Punishing
+3. A "emitter" to patch payloads with rogue-byte interweaves to break static analysis tools like IDA and GHIDRA (GHIDRA has proven to be incredibly resilient, even against movfuscated code) https://github.com/xoreaxeaxeax/movfuscator by Christopher Domas
+
+
